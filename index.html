@@ -1,0 +1,1282 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Discovery Estratégico — Freedom (Wizard)</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --brand-green: #dc3545;
+        --brand-green-dark: #dc3545;
+        --brand-brown: #a1887f;
+        --text-dark: #1f2937;
+        --text-muted: #6b7280;
+        --bg: #f9fafb;
+        --card: #fff;
+        --border: #e5e7eb;
+        --radius: 14px;
+        --shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Inter", sans-serif;
+        background: var(--bg);
+        color: var(--text-dark);
+        line-height: 1.6;
+      }
+      .navbar {
+        background: #fff;
+        border-bottom: 1px solid var(--border);
+      }
+      .navbar-brand {
+        font-weight: 700;
+        color: var(--brand-green) !important;
+      }
+      .progress {
+        height: 8px;
+        border-radius: 999px;
+        background: #eceff3;
+      }
+      .progress-bar {
+        background: linear-gradient(
+          90deg,
+          var(--brand-green),
+          var(--brand-brown)
+        );
+        border-radius: 999px;
+      }
+      .card-form {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        padding: 2rem;
+      }
+      .module-header {
+        border-left: 4px solid var(--brand-green);
+        padding-left: 1rem;
+        margin-bottom: 1.5rem;
+      }
+      .sub-header {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin: 1.25rem 0 0.75rem;
+        font-weight: 700;
+      }
+      .sub-header .dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 999px;
+        background: var(--brand-green);
+        box-shadow: 0 0 0 3px rgba(138, 154, 91, 0.15);
+      }
+      .form-label {
+        font-weight: 600;
+        margin-bottom: 0.35rem;
+      }
+      .form-hint {
+        font-size: 0.875rem;
+        color: var(--text-muted);
+        margin-top: 0.2rem;
+      }
+      textarea.form-control,
+      input.form-control {
+        border-radius: 10px;
+        border: 1px solid var(--border);
+        padding: 0.75rem 1rem;
+        resize: vertical;
+        min-height: 64px;
+      }
+      input.form-control {
+        min-height: auto;
+      }
+      .btn {
+        border-radius: 10px;
+        font-weight: 600;
+        transition: all 0.2s;
+      }
+      .btn-primary {
+        background: var(--brand-green-dark);
+        border-color: var(--brand-green-dark);
+      }
+      .btn-primary:hover {
+        background: #dc3545;
+      }
+      .btn-outline {
+        border: 2px solid var(--brand-green);
+        color: var(--brand-green);
+      }
+      .btn-outline:hover {
+        background: var(--brand-green);
+        color: #fff;
+      }
+      .step {
+        display: none;
+      }
+      .step.active {
+        display: block;
+      }
+      section.question {
+        margin-bottom: 1.05rem;
+      }
+      hr.hr-soft {
+        border: 0;
+        border-top: 1px dashed var(--border);
+        margin: 1.25rem 0;
+      }
+      .btn-primary:hover {
+        background: #dc3545;
+        border-color: #dc3545;
+      }
+      .small-muted {
+        color: var(--text-muted);
+        font-size: 0.9rem;
+      }
+      kbd {
+        background: #eef2f7;
+        padding: 0.1rem 0.35rem;
+        border-radius: 6px;
+        border: 1px solid #e2e8f0;
+      }
+      @media (max-width: 576px) {
+        .card-form {
+          padding: 1.25rem;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <nav class="navbar sticky-top">
+      <div
+        class="container py-2 d-flex flex-column flex-md-row align-items-md-center gap-2"
+      >
+        <a class="navbar-brand" href="#">Freedom — Requisitos</a>
+        <div class="w-100">
+          <div
+            class="progress"
+            role="progressbar"
+            aria-label="Progresso do formulário"
+          >
+            <div class="progress-bar" id="progressBar" style="width: 0%"></div>
+          </div>
+          <div class="small text-muted mt-1" id="progressText">0% completo</div>
+        </div>
+      </div>
+    </nav>
+
+    <main class="container my-5">
+      <div class="row justify-content-center">
+        <div class="col-lg-10">
+          <form id="discoveryForm" class="card-form" novalidate>
+            <!-- MÓDULO 1 -->
+            <div class="step active" data-step="1">
+              <div class="module-header">
+                <h2 class="h4">
+                  🧭 Módulo 1 — Identidade, Propósito e Posicionamento
+                </h2>
+                <p class="small-muted">
+                  Objetivo: Entender quem é a Freedom na essência — seus
+                  valores, dores de origem, promessas de marca e diferenciais
+                  competitivos.
+                </p>
+              </div>
+
+              <!-- 1.1 Origem e História -->
+              <div class="sub-header">
+                <span class="dot"></span><span>1.1 Origem e História</span>
+              </div>
+
+              <section class="question">
+                <label class="form-label"
+                  >Como surgiu a Freedom Imobiliária?</label
+                >
+                <textarea
+                  class="form-control"
+                  name="origem_surgimento"
+                  data-label="Como surgiu a Freedom Imobiliária?"
+                ></textarea>
+              </section>
+
+              <section class="question">
+                <label class="form-label"
+                  >O que inspirou o nome “Freedom”?</label
+                >
+                <textarea
+                  class="form-control"
+                  name="origem_nome"
+                  data-label="O que inspirou o nome “Freedom”?"
+                ></textarea>
+              </section>
+
+              <section class="question">
+                <label class="form-label"
+                  >Qual a visão de liberdade que a marca quer transmitir (ao
+                  cliente, ao corretor, ao mercado)?</label
+                >
+                <textarea
+                  class="form-control"
+                  name="origem_visao_liberdade"
+                  data-label="Qual a visão de liberdade que a marca quer transmitir (ao cliente, ao corretor, ao mercado)?"
+                ></textarea>
+              </section>
+
+              <section class="question">
+                <label class="form-label"
+                  >Quais desafios do mercado imobiliário vocês queriam resolver
+                  quando começaram?</label
+                >
+                <div class="form-hint">
+                  Ex.: excesso de burocracia, falta de agilidade, experiência
+                  ruim de compra…
+                </div>
+                <textarea
+                  class="form-control"
+                  name="origem_desafios"
+                  data-label="Quais desafios do mercado imobiliário vocês queriam resolver quando começaram?"
+                ></textarea>
+              </section>
+
+              <section class="question">
+                <label class="form-label"
+                  >Quais mudanças notaram no perfil do cliente desde o início
+                  até hoje?</label
+                >
+                <textarea
+                  class="form-control"
+                  name="origem_mudancas_perfil"
+                  data-label="Quais mudanças notaram no perfil do cliente desde o início até hoje?"
+                ></textarea>
+              </section>
+
+              <section class="question">
+                <label class="form-label"
+                  >Quais momentos foram decisivos na história da Freedom
+                  (crescimento, marcos, reestruturações)?</label
+                >
+                <textarea
+                  class="form-control"
+                  name="origem_marcos"
+                  data-label="Quais momentos foram decisivos na história da Freedom (crescimento, marcos, reestruturações)?"
+                ></textarea>
+              </section>
+
+              <hr class="hr-soft" />
+
+              <!-- 1.2 Propósito e Missão -->
+              <div class="sub-header">
+                <span class="dot"></span><span>1.2 Propósito e Missão</span>
+              </div>
+
+              <section class="question">
+                <label class="form-label"
+                  >Se a Freedom fosse uma pessoa, que tipo de personalidade ela
+                  teria?</label
+                >
+                <div class="form-hint">
+                  Ex.: empreendedora, moderna, acolhedora, técnica, ousada…
+                </div>
+                <textarea
+                  class="form-control"
+                  name="proposito_personalidade"
+                  data-label="Se a Freedom fosse uma pessoa, que tipo de personalidade ela teria?"
+                ></textarea>
+              </section>
+
+              <section class="question">
+                <label class="form-label"
+                  >Qual o propósito maior da Freedom no mercado?</label
+                >
+                <div class="form-hint">
+                  Ex.: gerar confiança, conectar pessoas a imóveis com
+                  propósito, revolucionar o atendimento…
+                </div>
+                <textarea
+                  class="form-control"
+                  name="proposito_mercado"
+                  data-label="Qual o propósito maior da Freedom no mercado?"
+                ></textarea>
+              </section>
+
+              <section class="question">
+                <label class="form-label"
+                  >O que vocês acreditam que os diferencia de fato, além do
+                  discurso?</label
+                >
+                <div class="form-hint">
+                  Ex.: metodologia própria, transparência, proximidade humana,
+                  inovação.
+                </div>
+                <textarea
+                  class="form-control"
+                  name="proposito_diferenciais"
+                  data-label="O que vocês acreditam que os diferencia de fato, além do discurso?"
+                ></textarea>
+              </section>
+
+              <hr class="hr-soft" />
+
+              <!-- 1.3 Identidade de Marca -->
+              <div class="sub-header">
+                <span class="dot"></span><span>1.3 Identidade de Marca</span>
+              </div>
+
+              <section class="question">
+                <label class="form-label"
+                  >Como a Freedom quer ser percebida por clientes
+                  (emocionalmente e racionalmente)?</label
+                >
+                <textarea
+                  class="form-control"
+                  name="identidade_percepcao_clientes"
+                  data-label="Como a Freedom quer ser percebida por clientes (emocionalmente e racionalmente)?"
+                ></textarea>
+              </section>
+
+              <section class="question">
+                <label class="form-label"
+                  >Como a Freedom quer ser percebida por construtoras e
+                  parceiros?</label
+                >
+                <textarea
+                  class="form-control"
+                  name="identidade_parceiros"
+                  data-label="Como a Freedom quer ser percebida por construtoras e parceiros?"
+                ></textarea>
+              </section>
+
+              <section class="question">
+                <label class="form-label"
+                  >Como a Freedom quer ser percebida por corretores e equipe
+                  interna?</label
+                >
+                <textarea
+                  class="form-control"
+                  name="identidade_equipe"
+                  data-label="Como a Freedom quer ser percebida por corretores e equipe interna?"
+                ></textarea>
+              </section>
+
+              <section class="question">
+                <label class="form-label"
+                  >Quais adjetivos devem estar ligados à marca?</label
+                >
+                <div class="form-hint">
+                  Ex.: confiável, ágil, sofisticada, humana, tecnológica…
+                </div>
+                <textarea
+                  class="form-control"
+                  name="identidade_adjetivos"
+                  data-label="Quais adjetivos devem estar ligados à marca (ex: confiável, ágil, sofisticada, humana, tecnológica)?"
+                ></textarea>
+              </section>
+
+              <section class="question">
+                <label class="form-label"
+                  >Existe um manual de marca ou diretrizes visuais definidas? Se
+                  sim, o que é inegociável visualmente?</label
+                >
+                <textarea
+                  class="form-control"
+                  name="identidade_manual"
+                  data-label="Existe um manual de marca ou diretrizes visuais definidas? Se sim, o que é inegociável visualmente?"
+                ></textarea>
+              </section>
+
+              <div class="d-flex justify-content-end mt-4">
+                <button type="button" class="btn btn-primary next-step">
+                  Próximo
+                </button>
+              </div>
+            </div>
+
+            <!-- MÓDULO 2 -->
+            <div class="step" data-step="2">
+              <div class="module-header">
+                <h2 class="h4">
+                  🌐 Módulo 2 — Comunicação, Presença Digital e Experiência (LP)
+                </h2>
+                <p class="small-muted">
+                  Objetivo: Entender como a Freedom quer comunicar sua essência
+                  e transformar o visitante digital em cliente real.
+                </p>
+              </div>
+
+              <!-- 2.1 Papel Estratégico da Landing Page -->
+              <div class="sub-header">
+                <span class="dot"></span
+                ><span>2.1 Papel Estratégico da Landing Page</span>
+              </div>
+
+              <section class="question">
+                <label class="form-label"
+                  >Como vocês imaginam que a Landing Page represente a essência
+                  da Freedom?</label
+                >
+                <textarea
+                  class="form-control"
+                  name="lp_essencia"
+                  data-label="Como vocês imaginam que a Landing Page represente a essência da Freedom?"
+                ></textarea>
+              </section>
+
+              <section class="question">
+                <label class="form-label"
+                  >O que precisa estar presente visualmente para o visitante
+                  sentir: “essa é uma marca diferente”?</label
+                >
+                <textarea
+                  class="form-control"
+                  name="lp_elementos_visuais"
+                  data-label="O que precisa estar presente visualmente para o visitante sentir: “essa é uma marca diferente”?"
+                ></textarea>
+              </section>
+
+              <section class="question">
+                <label class="form-label"
+                  >Que elementos visuais traduzem seus valores? (vídeos
+                  institucionais, fotografia emocional, cores, tipografia
+                  moderna?)</label
+                >
+                <textarea
+                  class="form-control"
+                  name="lp_valores_visuais"
+                  data-label="Que elementos visuais traduzem seus valores? (ex: vídeos institucionais, fotografia emocional, cores, tipografia moderna?)"
+                ></textarea>
+              </section>
+
+              <section class="question">
+                <label class="form-label"
+                  >Que tipo de experiência de navegação vocês desejam para o
+                  usuário?</label
+                >
+                <div class="form-hint">
+                  Ex.: intuitiva e rápida (conversão), imersiva e inspiradora
+                  (storytelling), técnica e detalhada (credibilidade)…
+                </div>
+                <textarea
+                  class="form-control"
+                  name="lp_experiencia"
+                  data-label="Que tipo de experiência de navegação vocês desejam para o usuário?"
+                ></textarea>
+              </section>
+
+              <section class="question">
+                <label class="form-label"
+                  >O que vocês consideram um visitante satisfeito na LP? Que
+                  ação ele precisa realizar?</label
+                >
+                <div class="form-hint">
+                  Ex.: preencher formulário, assistir vídeo, chamar no WhatsApp,
+                  salvar empreendimento…
+                </div>
+                <textarea
+                  class="form-control"
+                  name="lp_objetivo_conversao"
+                  data-label="O que vocês consideram um visitante satisfeito na LP? Que ação ele precisa realizar?"
+                ></textarea>
+              </section>
+
+              <section class="question">
+                <label class="form-label"
+                  >Como a LP ajuda a construir autoridade da Freedom?</label
+                >
+                <div class="form-hint">
+                  Ex.: números, parcerias, construtoras associadas,
+                  certificações…
+                </div>
+                <textarea
+                  class="form-control"
+                  name="lp_autoridade"
+                  data-label="Como a LP ajuda a construir autoridade da Freedom?"
+                ></textarea>
+              </section>
+
+              <section class="question">
+                <label class="form-label"
+                  >Como a LP pode representar o DNA de vendas da Freedom?</label
+                >
+                <div class="form-hint">
+                  Gatilhos de persuasão: exclusividade, urgência, proximidade
+                  humana…
+                </div>
+                <textarea
+                  class="form-control"
+                  name="lp_dna_vendas"
+                  data-label="Como a LP pode representar o DNA de vendas da Freedom?"
+                ></textarea>
+              </section>
+
+              <hr class="hr-soft" />
+
+              <!-- 2.2 Conteúdo e Jornada Digital -->
+              <div class="sub-header">
+                <span class="dot"></span
+                ><span>2.2 Conteúdo e Jornada Digital</span>
+              </div>
+
+              <section class="question">
+                <label class="form-label"
+                  >Que tipo de história a Freedom quer contar dentro da
+                  página?</label
+                >
+                <div class="form-hint">
+                  Ex.: “nossa paixão por imóveis começou há 10 anos…”
+                </div>
+                <textarea
+                  class="form-control"
+                  name="lp_storytelling"
+                  data-label="Que tipo de história a Freedom quer contar dentro da página?"
+                ></textarea>
+              </section>
+
+              <section class="question">
+                <label class="form-label"
+                  >Qual deve ser o tom de voz da comunicação?</label
+                >
+                <div class="form-hint">
+                  Ex.: emocional, técnico, aspiracional, direto…
+                </div>
+                <textarea
+                  class="form-control"
+                  name="lp_tom_voz"
+                  data-label="Qual deve ser o tom de voz da comunicação?"
+                ></textarea>
+              </section>
+
+              <section class="question">
+                <label class="form-label"
+                  >Há frases-chave que definem a marca e precisam estar em
+                  destaque?</label
+                >
+                <textarea
+                  class="form-control"
+                  name="lp_frases_chave"
+                  data-label="Há frases-chave que definem a marca e precisam estar em destaque?"
+                ></textarea>
+              </section>
+
+              <section class="question">
+                <label class="form-label"
+                  >Que emoções a Freedom quer despertar no visitante ao longo da
+                  página?</label
+                >
+                <div class="form-hint">
+                  Ex.: confiança, desejo, urgência, tranquilidade…
+                </div>
+                <textarea
+                  class="form-control"
+                  name="lp_emocoes"
+                  data-label="Que emoções a Freedom quer despertar no visitante ao longo da página?"
+                ></textarea>
+              </section>
+
+              <section class="question">
+                <label class="form-label"
+                  >Como o visitante deve “andar” pela página?</label
+                >
+                <div class="form-hint">
+                  Linear com storytelling, ou focado em gatilhos de conversão
+                  por sessão?
+                </div>
+                <textarea
+                  class="form-control"
+                  name="lp_fluxo_pagina"
+                  data-label="Como o visitante deve “andar” pela página?"
+                ></textarea>
+              </section>
+
+              <hr class="hr-soft" />
+
+              <!-- 2.3 Conversão e Captação de Leads -->
+              <div class="sub-header">
+                <span class="dot"></span
+                ><span>2.3 Conversão e Captação de Leads</span>
+              </div>
+
+              <section class="question">
+                <label class="form-label"
+                  >Quais são os pontos de conversão mais importantes dentro da
+                  LP?</label
+                >
+                <div class="form-hint">
+                  Ex.: formulário de interesse, botão de WhatsApp, chat
+                  automático, agendamento de visita…
+                </div>
+                <textarea
+                  class="form-control"
+                  name="lp_pontos_conversao"
+                  data-label="Quais são os pontos de conversão mais importantes dentro da LP?"
+                ></textarea>
+              </section>
+
+              <section class="question">
+                <label class="form-label"
+                  >Que dados são indispensáveis para o time comercial trabalhar
+                  um lead qualificado?</label
+                >
+                <div class="form-hint">
+                  Ex.: nome, telefone, e-mail, cidade, renda, tipo de imóvel,
+                  fase da jornada…
+                </div>
+                <textarea
+                  class="form-control"
+                  name="lp_dados_indispensaveis"
+                  data-label="Que dados são indispensáveis para o time comercial trabalhar um lead qualificado?"
+                ></textarea>
+              </section>
+
+              <section class="question">
+                <label class="form-label"
+                  >Como gerar leads de qualidade (não só volume) a partir da
+                  LP?</label
+                >
+                <div class="form-hint">
+                  Ex.: segmentação por tipo de imóvel, filtros inteligentes,
+                  copy por público…
+                </div>
+                <textarea
+                  class="form-control"
+                  name="lp_leads_qualidade"
+                  data-label="Como gerar leads de qualidade (não só volume) a partir da LP?"
+                ></textarea>
+              </section>
+
+              <section class="question">
+                <label class="form-label"
+                  >O que hoje impede a Freedom de converter mais nas campanhas
+                  digitais?</label
+                >
+                <div class="form-hint">
+                  Ex.: falta de automação, clareza nas páginas, lentidão no
+                  atendimento…
+                </div>
+                <textarea
+                  class="form-control"
+                  name="lp_barreiras_conversao"
+                  data-label="O que hoje impede a Freedom de converter mais nas campanhas digitais?"
+                ></textarea>
+              </section>
+
+              <section class="question">
+                <label class="form-label"
+                  >Como o lead deve ser tratado logo após o envio do
+                  formulário?</label
+                >
+                <div class="form-hint">
+                  Ex.: notificação automática ao corretor, mensagem
+                  personalizada via WhatsApp, registro instantâneo no CRM…
+                </div>
+                <textarea
+                  class="form-control"
+                  name="lp_pos_envio"
+                  data-label="Como o lead deve ser tratado logo após o envio do formulário?"
+                ></textarea>
+              </section>
+
+              <hr class="hr-soft" />
+
+              <!-- 2.4 Integração da LP com Marketing e Comercial -->
+              <div class="sub-header">
+                <span class="dot"></span
+                ><span>2.4 Integração da LP com o Marketing e o Comercial</span>
+              </div>
+
+              <section class="question">
+                <label class="form-label"
+                  >Como a LP se conecta hoje às campanhas digitais?</label
+                >
+                <div class="form-hint">
+                  Rastreamento via Google Ads / Meta Ads? Segmentação por
+                  origem?
+                </div>
+                <textarea
+                  class="form-control"
+                  name="lp_conexao_campanhas"
+                  data-label="Como a LP se conecta hoje às campanhas digitais?"
+                ></textarea>
+              </section>
+
+              <section class="question">
+                <label class="form-label"
+                  >Como o time comercial utiliza as informações geradas
+                  digitalmente?</label
+                >
+                <div class="form-hint">
+                  O lead chega pronto ou há retrabalho para identificar o que
+                  ele quer?
+                </div>
+                <textarea
+                  class="form-control"
+                  name="lp_uso_comercial"
+                  data-label="Como o time comercial utiliza as informações geradas digitalmente?"
+                ></textarea>
+              </section>
+
+              <section class="question">
+                <label class="form-label"
+                  >Qual é a visão ideal de uma LP integrada ao CRM?</label
+                >
+                <div class="form-hint">
+                  Lead captado → CRM → corretor notificado → acompanhamento →
+                  conversão monitorada
+                </div>
+                <textarea
+                  class="form-control"
+                  name="lp_visao_integrada_crm"
+                  data-label="Qual é a visão ideal de uma LP integrada ao CRM?"
+                ></textarea>
+              </section>
+
+              <section class="question">
+                <label class="form-label"
+                  >Quais relatórios vocês gostariam de ver da LP?</label
+                >
+                <div class="form-hint">
+                  Ex.: visitas, origem dos leads, taxa de conversão, tempo médio
+                  de contato…
+                </div>
+                <textarea
+                  class="form-control"
+                  name="lp_relatorios"
+                  data-label="Quais relatórios vocês gostariam de ver da LP?"
+                ></textarea>
+              </section>
+
+              <div class="d-flex justify-content-between mt-4">
+                <button type="button" class="btn btn-outline prev-step">
+                  Anterior
+                </button>
+                <button type="button" class="btn btn-primary next-step">
+                  Próximo
+                </button>
+              </div>
+            </div>
+
+            <!-- MÓDULO 3 -->
+            <div class="step" data-step="3">
+              <div class="module-header">
+                <h2 class="h4">
+                  💼 Módulo 3 — CRM, Relacionamento e Performance
+                </h2>
+                <p class="small-muted">
+                  Objetivo: Modelar a visão de CRM ideal — fluxos, dores,
+                  comportamentos e cultura de trabalho.
+                </p>
+              </div>
+
+              <!-- 3.1 Cultura de Vendas e Rotina -->
+              <div class="sub-header">
+                <span class="dot"></span
+                ><span>3.1 Cultura de Vendas e Rotina</span>
+              </div>
+
+              <section class="question">
+                <label class="form-label"
+                  >Como é o dia típico de um corretor na Freedom?</label
+                >
+                <div class="form-hint">
+                  Como recebe leads? Onde registra contatos? Como atualiza
+                  progresso?
+                </div>
+                <textarea
+                  class="form-control"
+                  name="crm_rotina_dia"
+                  data-label="Como é o dia típico de um corretor na Freedom?"
+                ></textarea>
+              </section>
+
+              <section class="question">
+                <label class="form-label"
+                  >Quais etapas da rotina são mais desgastantes e
+                  repetitivas?</label
+                >
+                <div class="form-hint">
+                  Ex.: excesso de planilhas, prints, mensagens dispersas…
+                </div>
+                <textarea
+                  class="form-control"
+                  name="crm_rotina_dores"
+                  data-label="Quais etapas da rotina são mais desgastantes e repetitivas?"
+                ></textarea>
+              </section>
+
+              <section class="question">
+                <label class="form-label"
+                  >O que mais causa perda de tempo e foco na rotina
+                  comercial?</label
+                >
+                <textarea
+                  class="form-control"
+                  name="crm_perda_tempo"
+                  data-label="O que mais causa perda de tempo e foco na rotina comercial?"
+                ></textarea>
+              </section>
+
+              <section class="question">
+                <label class="form-label"
+                  >Existe acompanhamento direto de gestores ou o trabalho é
+                  autogerido?</label
+                >
+                <textarea
+                  class="form-control"
+                  name="crm_acompanhamento"
+                  data-label="Existe acompanhamento direto de gestores ou o trabalho é autogerido?"
+                ></textarea>
+              </section>
+
+              <hr class="hr-soft" />
+
+              <!-- 3.2 Controle e Funil Comercial -->
+              <div class="sub-header">
+                <span class="dot"></span
+                ><span>3.2 Controle e Funil Comercial</span>
+              </div>
+
+              <section class="question">
+                <label class="form-label"
+                  >Como vocês definem os estágios do funil hoje?</label
+                >
+                <div class="form-hint">
+                  Ex.: Lead novo → Contato → Interesse → Proposta → Fechamento →
+                  Pós-venda
+                </div>
+                <textarea
+                  class="form-control"
+                  name="crm_funil_estagios"
+                  data-label="Como vocês definem os estágios do funil hoje?"
+                ></textarea>
+              </section>
+
+              <section class="question">
+                <label class="form-label"
+                  >Há clareza sobre onde cada cliente está na jornada, ou há
+                  confusão e falta de visibilidade?</label
+                >
+                <textarea
+                  class="form-control"
+                  name="crm_visibilidade"
+                  data-label="Há clareza sobre onde cada cliente está na jornada, ou há confusão e falta de visibilidade?"
+                ></textarea>
+              </section>
+
+              <section class="question">
+                <label class="form-label"
+                  >Quais dados vocês não conseguem enxergar facilmente, mas
+                  seriam vitais?</label
+                >
+                <div class="form-hint">
+                  Ex.: origem que mais converte, tempo médio de fechamento,
+                  performance por corretor…
+                </div>
+                <textarea
+                  class="form-control"
+                  name="crm_dados_vitais"
+                  data-label="Quais dados vocês não conseguem enxergar facilmente, mas seriam vitais?"
+                ></textarea>
+              </section>
+
+              <hr class="hr-soft" />
+
+              <!-- 3.3 Relacionamento e Atendimento -->
+              <div class="sub-header">
+                <span class="dot"></span
+                ><span>3.3 Relacionamento e Atendimento</span>
+              </div>
+
+              <section class="question">
+                <label class="form-label"
+                  >Como o CRM pode fortalecer o relacionamento com o
+                  cliente?</label
+                >
+                <div class="form-hint">
+                  Ex.: mensagens personalizadas, histórico completo, pós-venda…
+                </div>
+                <textarea
+                  class="form-control"
+                  name="crm_relacionamento"
+                  data-label="Como o CRM pode fortalecer o relacionamento com o cliente?"
+                ></textarea>
+              </section>
+
+              <section class="question">
+                <label class="form-label"
+                  >Qual tipo de comunicação representa melhor a Freedom?</label
+                >
+                <div class="form-hint">
+                  Proximidade via WhatsApp, agilidade via chatbot, e-mails
+                  automatizados com toque humano…
+                </div>
+                <textarea
+                  class="form-control"
+                  name="crm_comunicacao"
+                  data-label="Qual tipo de comunicação representa melhor a Freedom?"
+                ></textarea>
+              </section>
+
+              <section class="question">
+                <label class="form-label"
+                  >Que alertas ou automações ajudariam a não perder
+                  oportunidades?</label
+                >
+                <div class="form-hint">
+                  Ex.: lead parado, lembrete de follow-up, cliente reativado…
+                </div>
+                <textarea
+                  class="form-control"
+                  name="crm_alertas"
+                  data-label="Que alertas ou automações ajudariam a não perder oportunidades?"
+                ></textarea>
+              </section>
+
+              <hr class="hr-soft" />
+
+              <!-- 3.4 Inteligência e Indicadores -->
+              <div class="sub-header">
+                <span class="dot"></span
+                ><span>3.4 Inteligência e Indicadores</span>
+              </div>
+
+              <section class="question">
+                <label class="form-label"
+                  >Quais indicadores definem sucesso para a Freedom?</label
+                >
+                <div class="form-hint">
+                  Ex.: volume de leads, taxa de fechamento, tempo médio de
+                  atendimento, conversão por origem…
+                </div>
+                <textarea
+                  class="form-control"
+                  name="crm_indicadores_sucesso"
+                  data-label="Quais indicadores definem sucesso para a Freedom?"
+                ></textarea>
+              </section>
+
+              <section class="question">
+                <label class="form-label"
+                  >Como seria um dashboard ideal no CRM?</label
+                >
+                <div class="form-hint">
+                  Tempo real, por corretor, por empreendimento, por canal de
+                  mídia…
+                </div>
+                <textarea
+                  class="form-control"
+                  name="crm_dashboard_ideal"
+                  data-label="Como seria um dashboard ideal no CRM?"
+                ></textarea>
+              </section>
+
+              <section class="question">
+                <label class="form-label"
+                  >Que relatórios são essenciais para a diretoria
+                  semanalmente?</label
+                >
+                <textarea
+                  class="form-control"
+                  name="crm_relatorios_essenciais"
+                  data-label="Que relatórios são essenciais para a diretoria semanalmente?"
+                ></textarea>
+              </section>
+
+              <hr class="hr-soft" />
+
+              <!-- 3.5 Integrações e Automação -->
+              <div class="sub-header">
+                <span class="dot"></span
+                ><span>3.5 Integrações e Automação</span>
+              </div>
+
+              <section class="question">
+                <label class="form-label"
+                  >O que significa automação comercial para a Freedom?</label
+                >
+                <div class="form-hint">
+                  Leads caindo direto no CRM? Corretores recebendo contatos?
+                  Disparos automáticos?
+                </div>
+                <textarea
+                  class="form-control"
+                  name="crm_automacao_significado"
+                  data-label="O que significa automação comercial para a Freedom?"
+                ></textarea>
+              </section>
+
+              <section class="question">
+                <label class="form-label"
+                  >Quais sistemas/plataformas externas o CRM deve
+                  conversar?</label
+                >
+                <div class="form-hint">
+                  Ex.: RD Station, Ploomes, WhatsApp API, ZapSign, Meta Ads,
+                  Google Ads, Power BI…
+                </div>
+                <textarea
+                  class="form-control"
+                  name="crm_plataformas"
+                  data-label="Quais sistemas/plataformas externas o CRM deve conversar?"
+                ></textarea>
+              </section>
+
+              <section class="question">
+                <label class="form-label"
+                  >Como essa comunicação deve acontecer naturalmente no dia a
+                  dia?</label
+                >
+                <div class="form-hint">
+                  Tudo no app para o corretor? Relatórios automáticos para a
+                  gestão? Feedback de marketing?
+                </div>
+                <textarea
+                  class="form-control"
+                  name="crm_fluxo_natural"
+                  data-label="Como essa comunicação deve acontecer naturalmente no dia a dia?"
+                ></textarea>
+              </section>
+
+              <section class="question">
+                <label class="form-label"
+                  >Quais dados estratégicos vocês gostariam de cruzar e nunca
+                  conseguiram?</label
+                >
+                <div class="form-hint">
+                  Ex.: campanha que mais fecha, corretor que mais vende por
+                  origem, custo por conversão…
+                </div>
+                <textarea
+                  class="form-control"
+                  name="crm_dados_cruzados"
+                  data-label="Quais dados estratégicos vocês gostariam de cruzar e nunca conseguiram?"
+                ></textarea>
+              </section>
+
+              <hr class="hr-soft" />
+
+              <!-- 3.6 Resistências e Adoção -->
+              <div class="sub-header">
+                <span class="dot"></span
+                ><span>3.6 Resistências e Adoção de Tecnologia</span>
+              </div>
+
+              <section class="question">
+                <label class="form-label"
+                  >Quais foram as maiores dificuldades nas tentativas anteriores
+                  de digitalização?</label
+                >
+                <div class="form-hint">
+                  Ex.: falta de tempo, resistência, complexidade, curva de
+                  aprendizado…
+                </div>
+                <textarea
+                  class="form-control"
+                  name="crm_dificuldades_digitais"
+                  data-label="Quais foram as maiores dificuldades nas tentativas anteriores de digitalização?"
+                ></textarea>
+              </section>
+
+              <section class="question">
+                <label class="form-label"
+                  >Como tornar o sistema prazeroso e útil (e não uma
+                  obrigação)?</label
+                >
+                <div class="form-hint">
+                  Ex.: simplicidade, notificações úteis, interface bonita,
+                  métricas claras…
+                </div>
+                <textarea
+                  class="form-control"
+                  name="crm_prazer_uso"
+                  data-label="Como tornar o sistema prazeroso e útil (e não uma obrigação)?"
+                ></textarea>
+              </section>
+
+              <div class="d-flex justify-content-between mt-4">
+                <button type="button" class="btn btn-outline prev-step">
+                  Anterior
+                </button>
+                <button type="button" class="btn btn-primary next-step">
+                  Próximo
+                </button>
+              </div>
+            </div>
+
+            <!-- MÓDULO 4 -->
+            <div class="step" data-step="4">
+              <div class="module-header">
+                <h2 class="h4">
+                  📊 Módulo 4 — Futuro, Expansão e Escalabilidade
+                </h2>
+                <p class="small-muted">
+                  Objetivo: Conectar o projeto à visão de crescimento,
+                  desenhando uma base escalável e duradoura.
+                </p>
+              </div>
+
+              <section class="question">
+                <label class="form-label"
+                  >Onde vocês enxergam a Freedom nos próximos 3 anos?</label
+                >
+                <div class="form-hint">
+                  Quantos empreendimentos simultâneos? Quantos corretores?
+                  Quantas cidades?
+                </div>
+                <textarea
+                  class="form-control"
+                  name="futuro_3_anos"
+                  data-label="Onde vocês enxergam a Freedom nos próximos 3 anos? (empreendimentos, corretores, cidades)"
+                ></textarea>
+              </section>
+
+              <section class="question">
+                <label class="form-label"
+                  >Como imaginam o papel do digital nessa expansão?</label
+                >
+                <div class="form-hint">
+                  Operação centralizada? Plataformas próprias para parceiros?
+                  CRM multitenant?
+                </div>
+                <textarea
+                  class="form-control"
+                  name="futuro_papel_digital"
+                  data-label="Como imaginam o papel do digital nessa expansão?"
+                ></textarea>
+              </section>
+
+              <section class="question">
+                <label class="form-label"
+                  >Pretendem criar um ecossistema Freedom?</label
+                >
+                <div class="form-hint">
+                  LPs integradas, app de corretor, portal de clientes,
+                  assinatura digital, painel de performance…
+                </div>
+                <textarea
+                  class="form-control"
+                  name="futuro_ecossistema"
+                  data-label="Pretendem criar um ecossistema Freedom (LPs integradas, app de corretor, portal de clientes, assinatura digital, painel de performance)?"
+                ></textarea>
+              </section>
+
+              <section class="question">
+                <label class="form-label"
+                  >Que tecnologia diferenciaria a Freedom das demais
+                  imobiliárias?</label
+                >
+                <div class="form-hint">
+                  CRM com inteligência preditiva? LP dinâmica com recomendação
+                  de imóveis? App do cliente acompanhando a compra?
+                </div>
+                <textarea
+                  class="form-control"
+                  name="futuro_tecnologia_diferencial"
+                  data-label="Que tecnologia diferenciaria a Freedom das demais imobiliárias?"
+                ></textarea>
+              </section>
+
+              <div class="d-flex justify-content-between mt-4">
+                <button type="button" class="btn btn-outline prev-step">
+                  Anterior
+                </button>
+                <button type="button" id="btnWhats" class="btn btn-success">
+                  Enviar pelo WhatsApp
+                </button>
+              </div>
+            </div>
+          </form>
+
+          <p class="small-muted mt-3">
+            Dica: você pode navegar com <kbd>Shift</kbd> + <kbd>Enter</kbd> para
+            ir ao próximo campo rapidamente.
+          </p>
+        </div>
+      </div>
+    </main>
+
+    <script>
+      /* -------- Navegação de passos e progresso -------- */
+      const steps = document.querySelectorAll(".step");
+      const progressBar = document.getElementById("progressBar");
+      const progressText = document.getElementById("progressText");
+      let currentStep = 0;
+      const totalSteps = steps.length;
+
+      function updateProgress() {
+        const pct = Math.round(((currentStep + 1) / totalSteps) * 100);
+        progressBar.style.width = pct + "%";
+        progressBar.setAttribute("aria-valuenow", pct);
+        progressText.textContent = pct + "% completo";
+      }
+      function showStep(index) {
+        steps.forEach((s, i) => s.classList.toggle("active", i === index));
+        updateProgress();
+      }
+      document.querySelectorAll(".next-step").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          if (currentStep < totalSteps - 1) {
+            currentStep++;
+            showStep(currentStep);
+          }
+        });
+      });
+      document.querySelectorAll(".prev-step").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          if (currentStep > 0) {
+            currentStep--;
+            showStep(currentStep);
+          }
+        });
+      });
+
+      /* Acessibilidade: Enter no botão = próximo; Esc volta */
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && currentStep > 0) {
+          currentStep--;
+          showStep(currentStep);
+        }
+      });
+      updateProgress();
+
+      /* -------- Envio WhatsApp -------- */
+      const WHATS_NUMBER = "556993881869";
+
+      function buildWhatsappMessage() {
+        const data = [];
+        // pega textareas e inputs, usando o data-label como rótulo humano
+        document.querySelectorAll("textarea,input").forEach((el) => {
+          const label = el.getAttribute("data-label") || el.name || "Pergunta";
+          const value = (el.value || "").trim();
+          if (value) {
+            data.push({ label, value });
+          }
+        });
+
+        let msg = "📋 *Discovery Freedom — Respostas*\n\n";
+        data.forEach((item) => {
+          msg += `• ${item.label}: ${item.value}\n`;
+        });
+        return msg;
+      }
+
+      document.getElementById("btnWhats").addEventListener("click", () => {
+        const msg = buildWhatsappMessage();
+        const url = `https://wa.me/${WHATS_NUMBER}?text=${encodeURIComponent(
+          msg
+        )}`;
+        window.open(url, "_blank", "noopener,noreferrer");
+      });
+    </script>
+  </body>
+</html>
